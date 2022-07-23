@@ -14,10 +14,11 @@ public class HiroyasuKayama extends Player {
     public HiroyasuKayama() {
         super.points = 20;
     }
-
+    
+    @Override
     public boolean attack(Enemy enemy) {
         if (super.moves >= 3) {
-            System.out.println("Used up all moves!");
+            System.out.println("\u001B[31mUsed up all moves!");
             return false;
         }
 
@@ -29,15 +30,16 @@ public class HiroyasuKayama extends Player {
         super.moves += 1;
         return true;
     }
-
+    
+    @Override
     public boolean castSpell(int spell, int cost, Enemy enemy) { //Single target spells
 
         if (super.moves >= 3) {
-            System.out.println("Used up all moves!");
+            System.out.println("\u001B[31mUsed up all moves!");
             return false;
         }
         if (super.points < cost) {
-            System.out.println("Insufficient points!");
+            System.out.println("\u001B[31mInsufficient points!");
             return false;
         }
         
@@ -46,14 +48,14 @@ public class HiroyasuKayama extends Player {
         
         switch (spell) {
             case 1 -> {
-                System.out.println("This spell deals damage to 2 enemies!");
+                System.out.println("\u001B[31mThis spell deals damage to 2 enemies!");
                 return false;
             }
             case 2 -> {
                 if (cost / 10 > rng) {
                     kill = enemy.damage(Math.round(super.multiplier * 2000));
                 } else {
-                    System.out.println("Failed RNG roll!");
+                    System.out.println("\u001B[31mFailed RNG roll!");
                     return false;
                 }
             }
@@ -63,7 +65,7 @@ public class HiroyasuKayama extends Player {
                 }
             }
             default -> {
-                System.out.println("Spell value out of bounds!");
+                System.out.println("\u001B[31mSpell value out of bounds!");
                 return false;
             }
         }
@@ -74,14 +76,15 @@ public class HiroyasuKayama extends Player {
         super.moves += 1;
         return true;
     }
-
+    
+    @Override
     public boolean castSpell(int spell, int cost, Enemy[] enemies) {     
         if (enemies.length != 2) {
-            System.out.println("Enemies array should only contain 2 enemies!");
+            System.out.println("\u001B[31mEnemies array should only contain 2 enemies!");
             return false;
         }
         if (super.points < cost) {
-            System.out.println("Insufficient points!");
+            System.out.println("\u001B[31mInsufficient points!");
             return false;
         }
         
@@ -96,16 +99,16 @@ public class HiroyasuKayama extends Player {
                         }
                     }
                 } else {
-                    System.out.println("Failed RNG roll!");
+                    System.out.println("\u001B[31mFailed RNG roll!");
                     return false;
                 }
             }
             case 2,3 -> {
-                System.out.println("This spell deals damage to 1 enemy!");
+                System.out.println("\u001B[31mThis spell deals damage to 1 enemy!");
                 return false;
             }
             default -> {
-                System.out.println("Spell value out of bounds!");
+                System.out.println("\u001B[31mSpell value out of bounds!");
                 return false;
             }
         }

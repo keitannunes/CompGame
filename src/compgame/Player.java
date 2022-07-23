@@ -17,7 +17,7 @@ public class Player {
     protected int kills; // # of Kills player has
     protected int moves; // # of moves player has left
     protected float multiplier; // # Dmg multiplier
-    protected ArrayList<String> inventory = new ArrayList<String>(); //Inventory 
+    protected ArrayList<String> inventory = new ArrayList<>(); //Inventory 
     protected String[] items = {"", "", "", "", "", ""};
 
     public Player() {
@@ -65,23 +65,22 @@ public class Player {
             case "Dragon" ->
                 this.inventory.add("Tooth");
         }
-        enemy.reset();
     }
 
     public boolean equip(int inv_num, int equip_num) {
         // ERROR CHECKING 
         if (this.moves >= 3) {
-            System.out.println("Used up all moves!");
+            System.out.println("\u001B[31mUsed up all moves!");
             return false;
         }
 
         if (equip_num > 5 && equip_num < 0) {
-            System.out.println("item # out of bounds!");
+            System.out.println("\u001B[31mitem # out of bounds!");
             return false;
         }
 
         if (inv_num >= 0 && inv_num < this.inventory.size()) {
-            System.out.println("inventory slot is out of bounds!");
+            System.out.println("\u001B[31minventory slot is out of bounds!");
             return false;
         }
 
@@ -99,21 +98,21 @@ public class Player {
     public boolean unequip(int equip_num) {
         //error check
         if (equip_num > 5 && equip_num < 0) {
-            System.out.println("item # out of bounds!");
+            System.out.println("\u001B[31mitem # out of bounds!");
             return false;
         }
 
         if (this.items[equip_num].equals("")) {
-            System.out.println("item slot empty!");
+            System.out.println("\u001B[31mitem slot empty!");
             return false;
         }
-        
+
         //moving item to inventory
         this.inventory.add(this.items[equip_num]);
         this.items[equip_num] = "";
-        
+
         //remove buffs
-        switch (this.items[equip_num]) { 
+        switch (this.items[equip_num]) {
             case "Glass" -> {
                 if (this.kills % 5 == 0) {
                     this.multiplier -= 0.25;
@@ -129,6 +128,23 @@ public class Player {
         }
         return true;
     }
+    
+    //(overwritten in subclass)
+    public boolean attack(Enemy enemy){
+        System.out.println("WHAT");
+        return false;
+    }
+    
+    public boolean castSpell(int cost, int spell, Enemy enemy){
+        System.out.println("WHAT");
+        return false;
+    }
+    
+    public boolean castSpell(int cost, int spell, Enemy[] enemies){
+        System.out.println("WHAT");
+        return false;
+    }
+    
 
     public int getPoints() {
         return this.points;
@@ -153,7 +169,5 @@ public class Player {
     public String[] getItems() {
         return this.items;
     }
-
-    
 
 }

@@ -11,12 +11,10 @@ package compgame;
 public class Enemy {
     private String name; //Enemy name
     private int hp; //Enemy hitpoints
-    public Enemy(){
-        this.reset(); //gay (refactor so on death, create new enemy obj) ww
-    }
+    Game parent;
     
-    public void reset() {
-        this.hp = 1000;
+    public Enemy(){
+        this.hp = 10000;
         
         double rng = Math.random();
         if  (rng > 0.9){
@@ -30,6 +28,10 @@ public class Enemy {
         } else {
             this.name = "Dog";
         }
+    }
+    
+    public boolean isDead() {
+        return this.hp <= 0;
     }
     
     public boolean damage(int dmg) {
