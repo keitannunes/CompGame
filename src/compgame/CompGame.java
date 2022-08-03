@@ -5,15 +5,22 @@
  */
 package compgame;
 
+
+
+
+
+
 /**
  *
  * @author Keitan
  */
 public class CompGame {
-    public static void main(String[] args) {
-        HiroyasuKayama player = new HiroyasuKayama();
-        System.out.println(player.getItems()[0]);
-        
+    
+    
+    
+    public static void main(String[] args) throws Exception {
+        Gui gui = new Gui();
+       
     }
     
 }
